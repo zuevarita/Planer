@@ -1,0 +1,353 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --background-color: #AFC7D7;
+    --primary-color: #106974;
+    --second-color: #F8F7F0;
+    --radius: 32px;
+
+}
+
+html {
+    font-display: optional;
+    font-size: 62.5%;
+    font-family:"Montserrat", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+main{
+    height: 100vh;
+    padding: 2rem 5%;
+    background-color: var(--background-color);
+}
+
+.dashboard{
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(auto, 1fr) 1fr;
+    grid-template-columns: auto 1fr;
+    gap: 3.5rem;
+    grid-template-areas: 
+    "calendar week-tasks"
+    "today-task notes"
+    "today-task progress";
+}
+
+@media screen and (min-width: 850px){
+    .dashboard{
+        grid-template-rows: auto minmax(auto, 1.5fr) auto;
+        grid-template-columns: auto 2fr 1fr;
+        grid-template-areas: 
+            "calendar week-tasks week-tasks"
+            "today-task notes progress"
+            "today-task footer footer";
+    }
+}
+
+
+
+/* Topography */
+
+p{
+    font-weight: 400;
+}
+
+
+h2{
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+
+@media screen and (min-width: 1100px){
+    h2{
+        font-size: 3rem;
+    }
+}
+
+/* Common */
+
+.calendar, .week-tasks, .today-task, .notes{
+    padding: 2.3rem;
+    border-radius: var(--radius);
+    background-color: var(--second-color);
+}
+/* Calendar */
+
+.calendar{
+    grid-area: calendar;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    color: #FFFFFF;
+    background-color: var(--primary-color);
+    max-width: 35rem;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    box-shadow: 0 4px 4px 0px #00000040 inset;
+}
+
+.cal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+
+    .cal-month{
+        font-size: 2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .next, .prev{
+        outline: 0;
+        border: 0;
+        width: 1.8rem;
+        height: 1.8rem;
+        background-color: inherit;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+
+}
+.cal-weeks{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0.3rem 0;
+
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+.cal-days{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+
+    .day{
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 400;
+    
+        transition:  background-color 0.15s;
+    }
+        
+    
+
+    .active{
+        background-color: #F9D3D2;  
+    }
+
+    .today{
+        font-weight: 600;
+    }
+    
+    .prevDay, .nextDay{
+        opacity: 0;
+        cursor:default
+    }
+
+    .day:not(.active):hover{
+        background-color: rgba(249, 211, 210, 0.4);
+    }
+}
+
+@media screen and (min-width: 1100px){
+    .calendar{
+        padding-bottom: 1.7rem;
+        gap:1rem;
+    }
+    .cal-month{
+        font-size: 3.2rem;
+    }
+
+    .cal-weeks{
+        font-size: 2rem;
+    }
+
+    .cal-days .day{
+        font-size: 1.7rem;
+    }
+
+    .today{
+        font-weight: 700;
+    }
+}
+
+
+/* Week-Task */
+
+.week-tasks{
+    position: relative;
+    grid-area: week-tasks;
+    width: 100%;
+    max-width: 81rem;
+    box-shadow: 6px 9px 10.8px 0px #00000040;
+    color: var(--primary-color);
+
+    .week-cat{
+        position: absolute;
+        right: 18px;
+        bottom: 1px;
+        width: 15rem;
+        height: 15rem;
+        display: none;
+    }
+
+}
+
+
+@media screen and (min-width: 850px){
+    .week-tasks {
+        .week-cat {
+            display: block;
+        }
+    }
+}
+
+@media screen and (min-width: 1100px){
+    .week-tasks {
+        .week-cat {
+            width: 20rem;
+            height: 20rem;
+            display: block;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1320px){
+    main{
+        display: flex;
+        justify-content: center;
+    }
+
+    .dashboard{
+        width: 100%;
+        max-width: 1200px;
+    }
+}
+
+/* Today Tasks */
+
+.today-task{
+    grid-area: today-task;
+    box-shadow: 7px 7px 10.3px 0px #00000040;
+    color: var(--primary-color);
+
+}
+
+
+
+/* Notes */
+
+.notes{
+    grid-area: notes;
+    box-shadow: 7px 7px 10.3px 0px #00000040;
+    color: var(--primary-color);
+}
+
+
+/* Progress */
+
+.progress{
+    grid-area: progress;
+    justify-self: center;
+    align-self: center;
+    position: relative;
+    width: min(20vw, 160px);
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-color);
+}
+
+.progress-ring{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--second-color);
+    background: conic-gradient(#2a7886 0% 25% , #ffffff 25% 100%);
+
+}
+.progress-inner{
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .progress-text{
+        font-size: clamp(1rem, calc(5px + 1vw), 1.5rem);
+        font-weight: 600;
+    }
+
+    .progress-value{
+        font-size:  clamp(1rem, calc(20px + 2.5vw), 4rem);
+        font-weight: 400;
+        line-height: 100%;
+
+    }
+}
+
+
+/* Footer */
+
+.footer{
+    grid-area: footer;
+    display: none;
+    justify-content: end;
+    align-items: end;
+
+    p{
+        color: #0B4F58;
+        font-weight: 600;
+        text-align: end;
+        font-size:clamp(1rem, calc(1px + 4vw), 4.5rem);
+    }
+}
+
+
+@media screen and (min-width: 850px){
+    .footer{
+        display: flex;
+    }
+
+}
+
+
