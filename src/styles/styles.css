@@ -165,7 +165,7 @@ h2{
         border: 1px solid #ffffff00;
     }
 
-    .day.event:not(.active, .today)::after{
+    .day.event:not(.active)::after{
         content: "";
         position: absolute;
         bottom: -5px;

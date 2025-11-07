@@ -1,14 +1,15 @@
 import { initCalendar } from "./utiles/calendar.js";
 import {
+  localStorageSetItems,
+  localStorageGetItems,
+} from "./utiles/localStorage.js";
+import sticker from '../icons/sticker.svg';
+import {
   deleteElements,
   activeDate,
   displayDay,
   addEvents,
 } from "./utiles/helpers.js";
-import {
-  localStorageSetItems,
-  localStorageGetItems,
-} from "./utiles/localStorage.js";
 
 const template = document.querySelector(".template-todo");
 const toDoDayContainer = document.querySelector(".day-tasks-container");
@@ -127,3 +128,6 @@ const parseDate = (str) => {
 };
 
 initCalendar();
+
+const weekCat = document.querySelector('.week-cat');
+weekCat.src = sticker;
