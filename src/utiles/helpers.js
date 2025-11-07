@@ -65,7 +65,6 @@ const formatedDisplayDay = (date) => {
 
 export const addEvents = () => {
   const days = document.querySelectorAll(".day");
-  console.log(days);
   days.forEach((day) => {
     const hasTask = toDoList.some((todo) => todo.type === "day" && todo.date === day.dataset.date);
     if (hasTask) {
