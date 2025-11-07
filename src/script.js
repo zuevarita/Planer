@@ -3,7 +3,7 @@ import {
   localStorageSetItems,
   localStorageGetItems,
 } from "./utiles/localStorage.js";
-import sticker from '../icons/sticker.svg';
+import sticker from './icons/sticker.svg';
 import {
   deleteElements,
   activeDate,

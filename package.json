@@ -4,7 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "start": "npx webpack serve --mode development --open", 
+    "start": "npx webpack serve --mode development --open",
     "build": "npx webpack --mode production"
   },
   "keywords": [],
@@ -12,8 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^7.1.2",
+    "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.4",
     "live-server": "^1.2.2",
+    "mini-css-extract-plugin": "^2.9.4",
     "style-loader": "^4.0.0",
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1",
