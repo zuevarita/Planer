@@ -33,31 +33,56 @@
           <div class="cal-days"></div>
         </div>
         <div class="week-tasks">
-          <div class = "week-tasks-header"><h2>На неделю</h2></div>
-          <div class = "week-tasks-container"></div>
-          <img class = "week-cat" src="./icons/sticker.svg" alt="">
+          <div class="week-tasks-header"><h2>На неделю</h2></div>
+          <div class="todo-container week-tasks-container scroll">
+            <div class="todo add-todo" data-week-add-todo>
+              <div class="todo-circle add-circle"></div>
+              <div class="todo-task add-task" data-add-week-task>добавить задание</div>
+            </div>
+          </div>
+          <img class="week-cat" src="./icons/sticker.svg" alt="" />
         </div>
         <div class="today-task">
-          <h2>Число</h2>
+          <h2 data-display-day></h2>
+          <div class="todo-container day-tasks-container scroll">
+            <div class="todo add-todo" data-day-add-todo>
+              <div class="todo-circle add-circle"></div>
+              <div class="todo-task add-task" data-add-day-task>добавить задание</div>
+            </div>
+          </div>
         </div>
         <div class="notes">
           <h2>Заметки</h2>
+          <textarea class="note-lines"></textarea>
         </div>
         <div class="progress">
-          <div class = "progress-ring"></div>
-          <div class = "progress-inner">
+          <div class="progress-ring"></div>
+          <div class="progress-inner">
             <div class="progress-text">Выполнено</div>
             <div class="progress-value">1/4</div>
           </div>
         </div>
         <div class="footer">
-          <p>MADE BY <br> RITKALUVV, SAVULYY</p>
+          <p>
+            MADE BY <br />
+            RITKALUVV, SAVULYY
+          </p>
         </div>
       </section>
-     
+    </main>
+    <template class="template-todo">
+      <div class="todo" data-todo-wrapper>
+        <div class="todo-circle">
+          <input type="checkbox" class="todo-complited" />
+        </div>
+        <div class="todo-task"></div>
+      </div>
+    </template>
+
     <script src="script.js" type="module"></script>
     <script src="utiles/localStorage.js" type="module"></script>
-    <script src="utiles/form.js" type="module"></script>
+    <script src="utiles/addToDo.js" type="module"></script>
     <script src="utiles/calendar.js" type="module"></script>
+    <script src="utiles/notes.js" type="module"></script>
   </body>
 </html>

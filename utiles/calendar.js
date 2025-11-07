@@ -1,8 +1,13 @@
+import { render } from "../script.js";
+import { addListener} from "./helpers.js";
+
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
 const calDays = document.querySelector(".cal-days");
 
 const today = new Date();
-let month = today.getMonth();
-let year = today.getFullYear();
+export let month = today.getMonth();
+export let year = today.getFullYear();
 
 const months = [
   "Январь",
@@ -19,27 +24,21 @@ const months = [
   "Декабрь",
 ];
 
-export const monthNamesGenitive = [
-  "Января",
-  "Февраля",
-  "Марта",
-  "Апреля",
-  "Мая",
-  "Июня",
-  "Июля",
-  "Августа",
-  "Сентября",
-  "Октября",
-  "Ноября",
-  "Декабря",
-];
 
 const initDay = (i, ...classes)=>{
   const day = document.createElement("div");
   day.textContent = i;
   day.classList.add("day", ...classes);
 
-  day.dataset.date = `${i}.${month}.${year}`;
+
+  if (classes.includes("prevDay")){
+    day.dataset.date = `${i}.${month-1}.${year}`;
+  }else if(classes.includes("nextDay")){
+    day.dataset.date = `${i}.${month+1}.${year}`;
+  }else{
+    day.dataset.date = `${i}.${month}.${year}`;
+  }
+
 
   return day;
 }
@@ -51,7 +50,6 @@ const displayActiveMonth = ()=>{
 }
 export const initCalendar = ()=>{
   const firstMonthWeekDay = new Date(year, month, 1).getDay()=== 0? 7: new Date(year, month, 1).getDay();
-  const prevMonthDate = new Date(year, month, 0).getDate();
   const lastMonthDate = new Date(year, month+1, 0).getDate();
   const lastMonthWeekDay = new Date(year, month+1, 0).getDay() === 0? 7: new Date(year, month+1, 0).getDay();
   const nextMonthDays = 7 - (lastMonthWeekDay);
@@ -74,12 +72,15 @@ export const initCalendar = ()=>{
   }
 
   displayActiveMonth();
+  addListener();
+  render();
 }
 
 
 export const nextMonth = ()=>{
   if (month + 1 === 12){
     month = 0;
+    year++;
   }else{
     month+=1
   }
@@ -90,11 +91,22 @@ export const nextMonth = ()=>{
 export const prevMonth = ()=>{
   if (month - 1 === -1){
     month = 11;
+    year--;
   }else{
     month-=1
   }
 
   initCalendar();
 }
+
+prevBtn.addEventListener("click", () => {
+  prevMonth();
+});
+
+nextBtn.addEventListener("click", () => {
+  nextMonth();
+});
+
+
 
 
